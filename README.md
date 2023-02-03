@@ -1,10 +1,24 @@
 # Car Rest Service
-## Task 4.1 Planning: Car Database
-
-Important: In the next series of tasks you're going to develop Car Database microservice with rest API, make sure to give repo a meaningful name (ex. car-rest-service)
+## Task 4.2 Create RestApi endpoints
 
 ### Assignment
 
-Analyze and decompose Car DB Reset service  (create UML class diagram for application) based on attached csv data.
-
-Decompose provided data into db entities
+1. Create new Spring Boot project using Initializer with dependencies:
+* Spring Web (Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.)
+* Spring Data JPA (Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.)
+* Flyway Migration (Version control for your database so you can migrate from any version (incl. an empty database) to the latest version of the schema.)
+* H2 Database or PostgreSQL Driver of your choice
+2. Create model and schema initalizing sql migration script according with your UML diagrama
+3. Create JPA repositories and service layer with base CRUD operations
+4. Following best practices on RestAPI design - implement required endpoints to manage API model
+- Implement create/update/list/delete operations for provided data
+* manufacturers
+* manufacturers/model
+* manufacturers/model/year
+ex: `POST /api/v1/manufacturers/toyota/models/corolla/2001`
+- Implement search endpoint with parameters like `manufacturer` ,'model', 'minYear', 'maxYear, 'category'
+ex: `GET /api/v1/cars?manufacturer=mercedes&minYear=2005`
+- all list endpoints should support pagination and sorting
+- GET requests accessible for all users, POST requests - only authorized users.
+5. Cover controllers with tests
+6. Add additional components tests if required
