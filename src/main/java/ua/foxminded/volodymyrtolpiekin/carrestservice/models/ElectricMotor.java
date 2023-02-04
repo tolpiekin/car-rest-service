@@ -13,8 +13,6 @@ import javax.persistence.Id;
 @Entity
 public class ElectricMotor {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String type;
     private int power;
