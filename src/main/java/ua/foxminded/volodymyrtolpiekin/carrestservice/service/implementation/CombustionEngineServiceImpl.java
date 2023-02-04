@@ -1,20 +1,24 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.service.implementation;
 
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.CombustionEngine;
+import ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos.CombustionEngineDTO;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.CombustionEngineRepository;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.CombustionEngineService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CombustionEngineServiceImpl implements CombustionEngineService {
 
     CombustionEngineRepository combustionEngineRepository;
+    ModelMapper mapper;
 
     @Override
     public CombustionEngine create(CombustionEngine engine) {
@@ -22,19 +26,44 @@ public class CombustionEngineServiceImpl implements CombustionEngineService {
     }
 
     @Override
-    public CombustionEngine getById(Long id) {
+    public CombustionEngineDTO create(CombustionEngineDTO engineDTO) {
+        CombustionEngine engine = mapper.map(engineDTO, CombustionEngine.class);
+        return mapper.map(create(engine), CombustionEngineDTO.class);
+    }
+
+    @Override
+    public CombustionEngine findById(Long id) {
         return combustionEngineRepository.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Combustion Engine not found"));
     }
 
     @Override
-    public List<CombustionEngine> getAll() {
+    public CombustionEngineDTO getById(Long id) {
+        return mapper.map(findById(id), CombustionEngineDTO.class);
+    }
+
+    @Override
+    public List<CombustionEngine> findAll() {
         return combustionEngineRepository.findAll();
+    }
+
+    @Override
+    public List<CombustionEngineDTO> getAll() {
+        return findAll()
+                .stream()
+                .map(engine -> mapper.map(engine, CombustionEngineDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override
     public CombustionEngine update(CombustionEngine engine) {
         return combustionEngineRepository.save(engine);
+    }
+
+    @Override
+    public CombustionEngineDTO update(CombustionEngineDTO engineDTO) {
+        CombustionEngine engine = mapper.map(engineDTO, CombustionEngine.class);
+        return mapper.map(update(engine), CombustionEngineDTO.class);
     }
 
     @Override

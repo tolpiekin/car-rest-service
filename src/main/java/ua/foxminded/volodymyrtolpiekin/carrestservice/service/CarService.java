@@ -1,6 +1,7 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.service;
 
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.Car;
+import ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos.CarDTO;
 
 import java.util.List;
 
@@ -8,11 +9,19 @@ public interface CarService {
 
     Car create(Car car);
 
-    Car getById(Long id);
+    CarDTO create(CarDTO carDTO);
 
-    List<Car> getAll();
+    Car findById(Long id);
+
+    CarDTO getById(Long id);
+
+    List<Car> findAll();
+
+    List<CarDTO> getAll();
 
     Car update(Car car);
+
+    CarDTO update(CarDTO carDTO);
 
     void deleteById(Long id);
 }
