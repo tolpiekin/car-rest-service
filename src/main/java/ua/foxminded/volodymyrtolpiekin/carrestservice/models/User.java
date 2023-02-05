@@ -14,18 +14,20 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Entity
-public class Body {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String color;
+
+    private String username;
+    private String password;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Body body = (Body) o;
-        return id != null && Objects.equals(id, body.id);
+        User user = (User) o;
+        return id != null && Objects.equals(id, user.id);
     }
 
     @Override
