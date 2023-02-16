@@ -11,14 +11,13 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.TractionBattery
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.TractionBatteryService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class TractionBatteryServiceImpl implements TractionBatteryService {
 
-    TractionBatteryRepository tractionBatteryRepository;
-    ModelMapper mapper;
+    private final TractionBatteryRepository tractionBatteryRepository;
+    private final ModelMapper mapper;
 
     @Override
     public TractionBattery create(TractionBattery battery) {
@@ -52,7 +51,7 @@ public class TractionBatteryServiceImpl implements TractionBatteryService {
         return findAll()
                 .stream()
                 .map(tractionBattery -> mapper.map(tractionBattery, TractionBatteryDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

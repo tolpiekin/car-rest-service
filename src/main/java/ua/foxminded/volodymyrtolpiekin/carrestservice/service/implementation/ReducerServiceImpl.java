@@ -11,14 +11,13 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.ReducerReposito
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.ReducerService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ReducerServiceImpl implements ReducerService {
 
-    ReducerRepository reducerRepository;
-    ModelMapper mapper;
+    private final ReducerRepository reducerRepository;
+    private final ModelMapper mapper;
 
     @Override
     public Reducer create(Reducer reducer) {
@@ -52,7 +51,7 @@ public class ReducerServiceImpl implements ReducerService {
         return findAll()
                 .stream()
                 .map(reducer -> mapper.map(reducer, ReducerDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

@@ -24,4 +24,6 @@ public interface CarService {
     CarDTO update(CarDTO carDTO);
 
     void deleteById(Long id);
+
+    List<CarDTO> getByManufacturerAndYear(String manufacturerName, String modelName, int year);
 }

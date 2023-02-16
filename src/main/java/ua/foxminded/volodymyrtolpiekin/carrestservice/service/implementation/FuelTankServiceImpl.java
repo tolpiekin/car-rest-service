@@ -11,14 +11,13 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.FuelTankReposit
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.FuelTankService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class FuelTankServiceImpl implements FuelTankService {
 
-    FuelTankRepository fuelTankRepository;
-    ModelMapper mapper;
+    private final FuelTankRepository fuelTankRepository;
+    private final ModelMapper mapper;
     @Override
     public FuelTank create(FuelTank tank) {
         return fuelTankRepository.save(tank);
@@ -51,7 +50,7 @@ public class FuelTankServiceImpl implements FuelTankService {
         return findAll()
                 .stream()
                 .map(tank -> mapper.map(tank, FuelTankDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

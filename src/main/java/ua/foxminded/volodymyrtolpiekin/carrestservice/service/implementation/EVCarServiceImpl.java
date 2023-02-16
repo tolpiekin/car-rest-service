@@ -11,14 +11,13 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.EVCarRepository
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.EVCarService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class EVCarServiceImpl implements EVCarService {
 
-    EVCarRepository evCarRepository;
-    ModelMapper mapper;
+    private final EVCarRepository evCarRepository;
+    private final ModelMapper mapper;
 
     @Override
     public EVCar create(EVCar ev) {
@@ -52,7 +51,7 @@ public class EVCarServiceImpl implements EVCarService {
         return findAll()
                 .stream()
                 .map(ev -> mapper.map(ev, EVCarDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

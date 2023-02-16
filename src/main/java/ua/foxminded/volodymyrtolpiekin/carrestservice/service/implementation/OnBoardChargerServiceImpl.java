@@ -11,14 +11,13 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.OnBoardChargerR
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.OnBoardChargerService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class OnBoardChargerServiceImpl implements OnBoardChargerService {
 
-    OnBoardChargerRepository onBoardChargerRepository;
-    ModelMapper mapper;
+    private final OnBoardChargerRepository onBoardChargerRepository;
+    private final ModelMapper mapper;
 
     @Override
     public OnBoardCharger create(OnBoardCharger charger) {
@@ -52,7 +51,7 @@ public class OnBoardChargerServiceImpl implements OnBoardChargerService {
         return findAll()
                 .stream()
                 .map(charger -> mapper.map(charger, OnBoardChargerDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

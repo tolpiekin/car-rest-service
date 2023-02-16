@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.server.ResponseStatusException;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.Body;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos.BodyDTO;
@@ -12,13 +11,12 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.BodyRepository;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.BodyService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class BodyServiceImpl implements BodyService {
-    BodyRepository bodyRepository;
-    ModelMapper mapper;
+    private final BodyRepository bodyRepository;
+    private final ModelMapper mapper;
 
     @Override
     public Body create(Body body) {
@@ -52,7 +50,7 @@ public class BodyServiceImpl implements BodyService {
         return findAll()
                 .stream()
                 .map(body -> mapper.map(body, BodyDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

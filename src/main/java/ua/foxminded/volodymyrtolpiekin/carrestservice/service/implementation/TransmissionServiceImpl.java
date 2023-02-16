@@ -11,14 +11,13 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.TransmissionRep
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.TransmissionService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class TransmissionServiceImpl implements TransmissionService {
 
-    TransmissionRepository transmissionRepository;
-    ModelMapper mapper;
+    private final TransmissionRepository transmissionRepository;
+    private final ModelMapper mapper;
 
     @Override
     public Transmission create(Transmission transmission) {
@@ -52,7 +51,7 @@ public class TransmissionServiceImpl implements TransmissionService {
         return findAll()
                 .stream()
                 .map(transmission -> mapper.map(transmission, TransmissionDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.server.ResponseStatusException;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.Car;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos.CarDTO;
@@ -12,14 +11,13 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.CarRepository;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.CarService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CarServiceImpl implements CarService {
 
-    CarRepository carRepository;
-    ModelMapper mapper;
+    private final CarRepository carRepository;
+    private final ModelMapper mapper;
 
     @Override
     public Car create(Car car) {
@@ -53,7 +51,7 @@ public class CarServiceImpl implements CarService {
         return findAll()
                 .stream()
                 .map(car -> mapper.map(car, CarDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -71,5 +69,15 @@ public class CarServiceImpl implements CarService {
     public void deleteById(Long id) {
         if(carRepository.existsById(id))
             carRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CarDTO> getByManufacturerAndYear(String manufacturerName, String modelName, int year) {
+        return findAll().stream()
+                .filter(car ->
+                        car.getMaker().getName().equals(manufacturerName) &&
+                        car.getModel().getName().equals(modelName) &&
+                        car.getYear() == year)
+                .map(car -> mapper.map(car, CarDTO.class)).toList();
     }
 }

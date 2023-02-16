@@ -11,13 +11,12 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.CategoryReposit
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.CategoryService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
-    CategoryRepository categoryRepository;
-    ModelMapper mapper;
+    private final CategoryRepository categoryRepository;
+    private final ModelMapper mapper;
 
     @Override
     public Category create(Category category) {
@@ -61,7 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
         return findAll()
                 .stream()
                 .map(category -> mapper.map(category, CategoryDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

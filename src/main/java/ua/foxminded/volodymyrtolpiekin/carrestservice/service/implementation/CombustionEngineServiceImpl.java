@@ -11,14 +11,13 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.CombustionEngin
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.CombustionEngineService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CombustionEngineServiceImpl implements CombustionEngineService {
 
-    CombustionEngineRepository combustionEngineRepository;
-    ModelMapper mapper;
+    private final CombustionEngineRepository combustionEngineRepository;
+    private final ModelMapper mapper;
 
     @Override
     public CombustionEngine create(CombustionEngine engine) {
@@ -52,7 +51,7 @@ public class CombustionEngineServiceImpl implements CombustionEngineService {
         return findAll()
                 .stream()
                 .map(engine -> mapper.map(engine, CombustionEngineDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

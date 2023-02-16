@@ -11,14 +11,13 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.CarModelReposit
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.CarModelService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CarModelServiceImpl implements CarModelService {
 
-    CarModelRepository carModelRepository;
-    ModelMapper mapper;
+    private final CarModelRepository carModelRepository;
+    private final ModelMapper mapper;
 
     @Override
     public CarModel create(CarModel carModel) {
@@ -52,7 +51,7 @@ public class CarModelServiceImpl implements CarModelService {
         return findAll()
                 .stream()
                 .map(carModel -> mapper.map(carModel, CarModelDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -63,7 +62,7 @@ public class CarModelServiceImpl implements CarModelService {
     @Override
     public CarModelDTO update(CarModelDTO carModelDTO) {
         CarModel carModel = mapper.map(carModelDTO, CarModel.class);
-        return mapper.map(update(carModelDTO), CarModelDTO.class);
+        return mapper.map(update(carModel), CarModelDTO.class);
     }
 
     @Override

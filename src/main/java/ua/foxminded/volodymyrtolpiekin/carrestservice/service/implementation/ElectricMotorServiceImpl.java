@@ -11,14 +11,13 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.ElectricMotorRe
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.ElectricMotorService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ElectricMotorServiceImpl implements ElectricMotorService {
 
-    ElectricMotorRepository electricMotorRepository;
-    ModelMapper mapper;
+    private final ElectricMotorRepository electricMotorRepository;
+    private final ModelMapper mapper;
     @Override
     public ElectricMotor create(ElectricMotor motor) {
         return electricMotorRepository.save(motor);
@@ -51,7 +50,7 @@ public class ElectricMotorServiceImpl implements ElectricMotorService {
         return findAll()
                 .stream()
                 .map(motor -> mapper.map(motor, ElectricMotorDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

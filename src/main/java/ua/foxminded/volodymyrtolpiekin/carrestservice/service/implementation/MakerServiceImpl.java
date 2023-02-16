@@ -5,20 +5,21 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import ua.foxminded.volodymyrtolpiekin.carrestservice.models.CarModel;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.Maker;
+import ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos.CarModelDTO;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos.MakerDTO;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.MakerRepository;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.MakerService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class MakerServiceImpl implements MakerService {
 
-    MakerRepository makerRepository;
-    ModelMapper mapper;
+    private final MakerRepository makerRepository;
+    private final ModelMapper mapper;
 
     @Override
     public Maker create(Maker maker) {
@@ -43,6 +44,20 @@ public class MakerServiceImpl implements MakerService {
     }
 
     @Override
+    public List<CarModel> findAll(String name) {
+        Maker maker = makerRepository.findByName(name);
+        return maker.getCarModelList();
+    }
+
+    @Override
+    public List<CarModelDTO> getAll(String name) {
+        return findAll(name)
+                .stream()
+                .map(car -> mapper.map(car, CarModelDTO.class))
+                .toList();
+    }
+
+    @Override
     public List<Maker> findAll() {
         return makerRepository.findAll();
     }
@@ -52,7 +67,7 @@ public class MakerServiceImpl implements MakerService {
         return findAll()
                 .stream()
                 .map(maker -> mapper.map(maker, MakerDTO.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -70,5 +85,14 @@ public class MakerServiceImpl implements MakerService {
     public void deleteById(Long id) {
         if(makerRepository.existsById(id))
             makerRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CarModelDTO> getByName(String manufacturerName) {
+        Maker maker = makerRepository.findByName(manufacturerName);
+        return maker.getCarModelList()
+                .stream()
+                .map(model -> mapper.map(model, CarModelDTO.class))
+                .toList();
     }
 }
