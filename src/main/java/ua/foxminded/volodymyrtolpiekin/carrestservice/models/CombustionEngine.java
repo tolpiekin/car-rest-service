@@ -27,13 +27,15 @@ public class CombustionEngine {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CombustionEngine that = (CombustionEngine) o;
-        return id != null && Objects.equals(id, that.id);
+        if (o == null || getClass() != o.getClass()) return false;
+        CombustionEngine engine = (CombustionEngine) o;
+        return id.equals(engine.id);
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        int result = 17;
+        result = 37 * result + (id == null ? 0 : id.hashCode());
+        return result;
     }
 }

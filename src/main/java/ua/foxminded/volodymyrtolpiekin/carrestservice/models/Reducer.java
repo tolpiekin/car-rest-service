@@ -24,13 +24,15 @@ public class Reducer {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Reducer reducer = (Reducer) o;
-        return id != null && Objects.equals(id, reducer.id);
+        return id.equals(reducer.id);
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        int result = 17;
+        result = 37 * result + (id == null ? 0 : id.hashCode());
+        return result;
     }
 }
