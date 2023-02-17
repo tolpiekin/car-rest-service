@@ -1,15 +1,13 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos;
 
-import ua.foxminded.volodymyrtolpiekin.carrestservice.models.*;
-
 public class EVCarDTO {
     private Long id;
-    private CarModel model;
+    private CarModelDTO model;
     private int year;
-    private Body body;
-    private Maker maker;
-    private ElectricMotor engine;
-    private TractionBattery battery;
-    private Reducer reducer;
-    private OnBoardCharger charger;
+    private BodyDTO body;
+    private MakerDTO maker;
+    private ElectricMotorDTO engine;
+    private TractionBatteryDTO battery;
+    private ReducerDTO reducer;
+    private OnBoardChargerDTO charger;
 }
