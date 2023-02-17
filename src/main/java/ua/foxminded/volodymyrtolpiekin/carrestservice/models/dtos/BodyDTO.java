@@ -10,4 +10,19 @@ import lombok.NoArgsConstructor;
 public class BodyDTO {
     private Long id;
     private String color;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BodyDTO bodyDTO = (BodyDTO) o;
+        return id.equals(bodyDTO.id);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 37 * result + (id == null ? 0 : id.hashCode());
+        return result;
+    }
 }
