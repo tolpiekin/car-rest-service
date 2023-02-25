@@ -2,6 +2,7 @@ package ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos;
 
 public class EVCarDTO {
     private Long id;
+    private String objectId;
     private CarModelDTO model;
     private int year;
     private BodyDTO body;

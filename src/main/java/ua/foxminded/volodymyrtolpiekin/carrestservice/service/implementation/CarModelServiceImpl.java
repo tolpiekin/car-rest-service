@@ -70,4 +70,14 @@ public class CarModelServiceImpl implements CarModelService {
         if (carModelRepository.existsById(id))
             carModelRepository.deleteById(id);
     }
+
+    @Override
+    public boolean ifExistsByName(String modelName) {
+        return carModelRepository.existsByName(modelName);
+    }
+
+    @Override
+    public CarModel findByName(String model) {
+        return carModelRepository.findByName(model);
+    }
 }

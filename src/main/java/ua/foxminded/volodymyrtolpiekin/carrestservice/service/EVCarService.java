@@ -24,4 +24,8 @@ public interface EVCarService {
     EVCarDTO update(EVCarDTO evDTO);
 
     void delete(Long id);
+
+    boolean ifExistsByObjectId(String objectId);
+
+    EVCar findByObjectId(String objectId);
 }

@@ -26,4 +26,8 @@ public interface CarService {
     void deleteById(Long id);
 
     List<CarDTO> getByManufacturerAndYear(String manufacturerName, String modelName, int year);
+
+    boolean ifExistsByObjectId(String objectId);
+
+    Car findByObjectId(String objectId);
 }

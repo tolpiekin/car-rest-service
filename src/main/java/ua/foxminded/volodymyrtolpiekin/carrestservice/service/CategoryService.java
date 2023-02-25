@@ -28,4 +28,6 @@ public interface CategoryService {
     CategoryDTO update(CategoryDTO categoryDTO);
 
     void deleteById(Long id);
+
+    boolean existByName(String category);
 }

@@ -1,11 +1,12 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.models;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -18,7 +19,6 @@ public class Maker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String country;
     @OneToMany
     private List<CarModel> carModelList;
 

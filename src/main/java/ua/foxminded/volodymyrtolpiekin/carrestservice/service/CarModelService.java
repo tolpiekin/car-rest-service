@@ -24,4 +24,8 @@ public interface CarModelService {
     CarModelDTO update(CarModelDTO carModelDTO);
 
     void deleteById(Long id);
+
+    boolean ifExistsByName(String model);
+
+    CarModel findByName(String model);
 }

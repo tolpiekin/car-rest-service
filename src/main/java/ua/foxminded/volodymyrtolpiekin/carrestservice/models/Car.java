@@ -18,6 +18,8 @@ public class Car extends CarModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String objectId;
+
     @OneToOne
     private CarModel model;
     private int year;

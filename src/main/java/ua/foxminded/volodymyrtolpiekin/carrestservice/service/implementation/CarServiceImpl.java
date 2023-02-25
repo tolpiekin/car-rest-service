@@ -80,4 +80,14 @@ public class CarServiceImpl implements CarService {
                         car.getYear() == year)
                 .map(car -> mapper.map(car, CarDTO.class)).toList();
     }
+
+    @Override
+    public boolean ifExistsByObjectId(String objectId) {
+        return carRepository.findByObjectId(objectId).isPresent();
+    }
+
+    @Override
+    public Car findByObjectId(String objectId) {
+        return carRepository.findByObjectId(objectId).get();
+    }
 }

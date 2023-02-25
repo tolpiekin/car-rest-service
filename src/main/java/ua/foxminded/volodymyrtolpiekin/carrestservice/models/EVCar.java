@@ -16,7 +16,7 @@ public class EVCar {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    private String objectId;
     @OneToOne
     @JoinColumn(name = "model_id")
     private CarModel model;

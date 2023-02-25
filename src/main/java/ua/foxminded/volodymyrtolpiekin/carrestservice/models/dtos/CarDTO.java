@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CarDTO {
     private Long id;
+    private String objectId;
     private CarModelDTO model;
     private int year;
     private BodyDTO body;

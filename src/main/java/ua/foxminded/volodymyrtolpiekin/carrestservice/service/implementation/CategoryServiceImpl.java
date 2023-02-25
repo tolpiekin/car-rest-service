@@ -79,4 +79,9 @@ public class CategoryServiceImpl implements CategoryService {
         if(categoryRepository.existsById(id))
             categoryRepository.deleteById(id);
     }
+
+    @Override
+    public boolean existByName(String category) {
+        return categoryRepository.existsByName(category);
+    }
 }

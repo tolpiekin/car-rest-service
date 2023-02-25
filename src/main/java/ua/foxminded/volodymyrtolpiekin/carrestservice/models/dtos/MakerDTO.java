@@ -12,7 +12,6 @@ import java.util.List;
 public class MakerDTO {
     private Long id;
     private String name;
-    private String country;
     private List<CarModelDTO> carModelList;
 
     @Override
