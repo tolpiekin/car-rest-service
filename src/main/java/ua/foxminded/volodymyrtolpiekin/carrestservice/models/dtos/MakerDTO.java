@@ -5,9 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.CarModel;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 @Data

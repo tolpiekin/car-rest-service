@@ -5,10 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.Maker;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
