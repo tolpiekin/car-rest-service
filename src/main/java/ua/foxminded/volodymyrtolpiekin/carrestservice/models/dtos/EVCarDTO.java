@@ -1,5 +1,7 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos;
 
+import java.util.List;
+
 public class EVCarDTO {
     private Long id;
     private String objectId;
@@ -11,6 +13,7 @@ public class EVCarDTO {
     private TractionBatteryDTO battery;
     private ReducerDTO reducer;
     private OnBoardChargerDTO charger;
+    private List<CategoryDTO> category;
 
     @Override
     public boolean equals(Object o) {

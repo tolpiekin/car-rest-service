@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +19,7 @@ public class CarDTO {
     private CombustionEngineDTO engine;
     private FuelTankDTO tank;
     private TransmissionDTO transmission;
-
+    private List<CategoryDTO> category;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

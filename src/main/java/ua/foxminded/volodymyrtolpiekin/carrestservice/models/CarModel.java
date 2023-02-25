@@ -18,6 +18,10 @@ public class CarModel {
     private Long id;
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "maker_id")
+    private Maker maker;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

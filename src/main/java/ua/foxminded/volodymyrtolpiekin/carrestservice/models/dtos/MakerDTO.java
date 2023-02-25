@@ -3,7 +3,11 @@ package ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ua.foxminded.volodymyrtolpiekin.carrestservice.models.CarModel;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Data
@@ -12,7 +16,7 @@ import java.util.List;
 public class MakerDTO {
     private Long id;
     private String name;
-    private List<CarModelDTO> carModelList;
+    private List<CarModel> carModelList;
 
     @Override
     public boolean equals(Object o) {

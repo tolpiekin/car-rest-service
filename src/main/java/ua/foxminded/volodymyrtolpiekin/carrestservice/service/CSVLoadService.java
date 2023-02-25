@@ -45,7 +45,7 @@ public class CSVLoadService {
 
                     Maker maker = createMakerIfNotExist(make);
                     List<Category> category = createCategoryIfNotExists(categories);
-                    CarModel carModel = createModelIfNotExists(model);
+                    CarModel carModel = createModelIfNotExists(model, maker);
 
                     if (model.contains("EV")) {
                         createEVCarIfNotExists(maker, carModel, year, objectId, category);
@@ -105,12 +105,13 @@ public class CSVLoadService {
         }
     }
 
-    private CarModel createModelIfNotExists(String name) {
+    private CarModel createModelIfNotExists(String name, Maker maker) {
         if (carModelService.ifExistsByName(name)) {
             return carModelService.findByName(name);
         } else {
             CarModel carModel = new CarModel();
             carModel.setName(name);
+            carModel.setMaker(maker);
             return carModelService.create(carModel);
         }
     }

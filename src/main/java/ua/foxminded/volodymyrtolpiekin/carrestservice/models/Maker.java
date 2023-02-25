@@ -19,7 +19,8 @@ public class Maker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToMany
+
+    @OneToMany(mappedBy = "maker")
     private List<CarModel> carModelList;
 
     @Override

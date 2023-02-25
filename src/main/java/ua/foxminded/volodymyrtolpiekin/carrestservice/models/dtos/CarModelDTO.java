@@ -3,7 +3,10 @@ package ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ua.foxminded.volodymyrtolpiekin.carrestservice.models.Maker;
 
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Data
@@ -12,8 +15,7 @@ import java.util.List;
 public class CarModelDTO {
     private Long id;
     private String name;
-    private MakerDTO maker;
-    private List<CategoryDTO> category;
+    private Maker maker;
 
     @Override
     public boolean equals(Object o) {
