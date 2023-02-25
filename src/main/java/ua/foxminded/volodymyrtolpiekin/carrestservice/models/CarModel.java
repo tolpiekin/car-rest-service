@@ -17,12 +17,6 @@ public class CarModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @ManyToOne
-    private Maker maker;
-
-    @OneToMany
-    @ToString.Exclude
-    private List<Category> category;
 
     @Override
     public boolean equals(Object o) {

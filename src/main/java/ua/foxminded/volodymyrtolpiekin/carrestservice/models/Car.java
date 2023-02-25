@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -38,6 +39,10 @@ public class Car extends CarModel {
 
     @OneToOne
     private Transmission transmission;
+
+    @OneToMany
+    @JoinColumn(name = "car_id")
+    private List<Category> category;
 
     @Override
     public boolean equals(Object o) {

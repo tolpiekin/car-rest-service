@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -39,6 +40,9 @@ public class EVCar {
     @OneToOne
     @JoinColumn(name = "charger_id")
     private OnBoardCharger charger;
+    @OneToMany
+    @JoinColumn(name = "ev_car_id")
+    private List<Category> category;
 
     @Override
     public boolean equals(Object o) {
