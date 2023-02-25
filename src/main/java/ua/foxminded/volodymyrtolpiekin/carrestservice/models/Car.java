@@ -46,10 +46,16 @@ public class Car extends CarModel {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Car car = (Car) o;
-        return id != null && Objects.equals(id, car.id);
+        boolean result;
+        if (this == o) {
+            result = true;
+        } else if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
+            result = false;
+        } else {
+            Car car = (Car) o;
+            result = id != null && Objects.equals(id, car.id) && o.getClass() == this.getClass();
+        }
+        return result;
     }
 
     @Override

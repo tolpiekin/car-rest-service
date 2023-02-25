@@ -31,15 +31,14 @@ public class CSVLoadService {
     @PostConstruct
     public void loadDataFromCSV() {
 
-        try (CSVReader csvReader = new CSVReader(new FileReader("file.csv"));) {
-            String[] values = csvReader.readNext();
-            int evCarNo = 0;
-            int carNo = 0;
+        try (CSVReader csvReader = new CSVReader(new FileReader("file.csv"))) {
+            String[] values;
+            csvReader.readNext();
             while ((values = csvReader.readNext()) != null) {
-                if (values[0] != "") {
+                if (!values[0].equals("")) {
                     String objectId = values[0];
                     String make = values[1];
-                    int year = Integer.valueOf(values[2]);
+                    int year = Integer.parseInt(values[2]);
                     String model = values[3];
                     String[] categories = Arrays.copyOfRange(values, 4, values.length);
 
@@ -49,23 +48,19 @@ public class CSVLoadService {
 
                     if (model.contains("EV")) {
                         createEVCarIfNotExists(maker, carModel, year, objectId, category);
-                        System.out.println("" + evCarNo++ + " EVCar: " + carModel.getName() + " created");
                     } else {
                         createCarIfNotExists(maker, carModel, year, objectId, category);
-                        System.out.println("" + carNo++ + " Car: " + carModel.getName() + " created");
                     }
                 }
             }
-        } catch (CsvValidationException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (CsvValidationException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private EVCar createEVCarIfNotExists(Maker maker, CarModel carModel, int year, String objectId, List<Category> category) {
+    private void createEVCarIfNotExists(Maker maker, CarModel carModel, int year, String objectId, List<Category> category) {
         if (evCarService.ifExistsByObjectId(objectId)) {
-            return evCarService.findByObjectId(objectId);
+            evCarService.findByObjectId(objectId);
         } else {
             EVCar evCar = new EVCar();
             evCar.setObjectId(objectId);
@@ -73,7 +68,7 @@ public class CSVLoadService {
             evCar.setModel(carModel);
             evCar.setYear(year);
             evCar.setCategory(category);
-            return evCarService.create(evCar);
+            evCarService.create(evCar);
         }
     }
 
@@ -91,9 +86,9 @@ public class CSVLoadService {
         return categoriesList;
     }
 
-    private Car createCarIfNotExists(Maker maker, CarModel carModel, int year, String objectId, List<Category> category) {
+    private void createCarIfNotExists(Maker maker, CarModel carModel, int year, String objectId, List<Category> category) {
         if (carService.ifExistsByObjectId(objectId)) {
-            return carService.findByObjectId(objectId);
+            carService.findByObjectId(objectId);
         } else {
             Car car = new Car();
             car.setObjectId(objectId);
@@ -101,7 +96,7 @@ public class CSVLoadService {
             car.setModel(carModel);
             car.setYear(year);
             car.setCategory(category);
-            return carService.create(car);
+            carService.create(car);
         }
     }
 

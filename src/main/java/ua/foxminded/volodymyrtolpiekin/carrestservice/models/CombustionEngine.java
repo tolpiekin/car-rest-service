@@ -1,13 +1,14 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.models;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -26,10 +27,16 @@ public class CombustionEngine {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CombustionEngine engine = (CombustionEngine) o;
-        return id.equals(engine.id);
+        boolean result;
+        if (this == o) {
+            result = true;
+        } else if (o == null || getClass() != o.getClass()) {
+            result = false;
+        } else {
+            CombustionEngine engine = (CombustionEngine) o;
+            result = id.equals(engine.id);
+        }
+        return result;
     }
 
     @Override

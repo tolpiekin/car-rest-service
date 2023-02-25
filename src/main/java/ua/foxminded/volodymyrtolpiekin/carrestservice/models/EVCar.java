@@ -1,11 +1,12 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.models;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -46,10 +47,16 @@ public class EVCar {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EVCar evCar = (EVCar) o;
-        return id.equals(evCar.id);
+        boolean result;
+        if (this == o) {
+            result = true;
+        } else if (o == null || getClass() != o.getClass()) {
+            result = false;
+        } else {
+            EVCar evCar = (EVCar) o;
+            result = id.equals(evCar.id);
+        }
+        return result;
     }
 
     @Override

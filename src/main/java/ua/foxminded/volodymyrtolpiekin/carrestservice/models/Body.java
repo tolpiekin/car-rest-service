@@ -22,10 +22,16 @@ public class Body {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Body body = (Body) o;
-        return id != null && Objects.equals(id, body.id);
+        boolean result;
+        if (this == o) {
+            result = true;
+        } else if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
+            result = false;
+        } else {
+            Body body = (Body) o;
+            result = id != null && Objects.equals(id, body.id) && o.getClass() == this.getClass();
+        }
+        return result;
     }
 
     @Override

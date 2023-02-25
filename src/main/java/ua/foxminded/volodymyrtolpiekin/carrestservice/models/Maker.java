@@ -25,10 +25,16 @@ public class Maker {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Maker maker = (Maker) o;
-        return id.equals(maker.id);
+        boolean result;
+        if (this == o) {
+            result = true;
+        } else if (o == null || getClass() != o.getClass()) {
+            result = false;
+        } else {
+            Maker maker = (Maker) o;
+            result = id.equals(maker.id);
+        }
+        return result;
     }
 
     @Override

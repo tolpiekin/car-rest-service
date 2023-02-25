@@ -1,10 +1,12 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.models;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -17,17 +19,22 @@ public class CarModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-
     @ManyToOne
     @JoinColumn(name = "maker_id")
     private Maker maker;
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CarModel carModel = (CarModel) o;
-        return id != null && Objects.equals(id, carModel.id);
+        boolean result;
+        if (this == o) {
+            result = true;
+        } else if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
+            result = false;
+        } else {
+            CarModel carModel = (CarModel) o;
+            result = id != null && Objects.equals(id, carModel.id) && o.getClass() == this.getClass();
+        }
+        return result;
     }
 
     @Override

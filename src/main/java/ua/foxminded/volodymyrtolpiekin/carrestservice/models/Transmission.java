@@ -1,13 +1,14 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.models;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -24,10 +25,16 @@ public class Transmission {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Transmission transmission = (Transmission) o;
-        return id.equals(transmission.id);
+        boolean result;
+        if (this == o) {
+            result = true;
+        } else if (o == null || getClass() != o.getClass()) {
+            result = false;
+        } else {
+            Transmission transmission = (Transmission) o;
+            result = id.equals(transmission.id);
+        }
+        return result;
     }
 
     @Override
