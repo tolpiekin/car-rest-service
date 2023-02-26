@@ -17,6 +17,10 @@ public interface MakerService {
 
     MakerDTO getById(Long id);
 
+    List<CarModel> findAll(String name);
+
+    List<CarModelDTO> getAll(String name);
+
     List<Maker> findAll();
 
     List<MakerDTO> getAll();

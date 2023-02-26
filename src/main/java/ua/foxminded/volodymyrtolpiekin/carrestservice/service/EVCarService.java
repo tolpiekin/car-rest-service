@@ -26,6 +26,4 @@ public interface EVCarService {
     void delete(Long id);
 
     boolean ifExistsByObjectId(String objectId);
-
-    EVCar findByObjectId(String objectId);
 }

@@ -75,9 +75,4 @@ public class EVCarServiceImpl implements EVCarService {
     public boolean ifExistsByObjectId(String objectId) {
         return evCarRepository.findByObjectId(objectId).isPresent();
     }
-
-    @Override
-    public EVCar findByObjectId(String objectId) {
-        return evCarRepository.findByObjectId(objectId).get();
-    }
 }

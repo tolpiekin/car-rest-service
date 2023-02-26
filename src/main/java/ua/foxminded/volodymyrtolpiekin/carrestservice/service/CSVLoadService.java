@@ -75,7 +75,7 @@ public class CSVLoadService {
     private List<Category> createCategoryIfNotExists(String[] categories) {
         List<Category> categoriesList = new ArrayList<>();
         for(String category: categories) {
-            if (categoryService.existByName(category)) {
+            if (categoryService.ifExistByName(category)) {
                 categoriesList.add(categoryService.findByName(category));
             } else {
                 Category newCategory = new Category();

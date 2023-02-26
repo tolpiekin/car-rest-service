@@ -85,9 +85,4 @@ public class CarServiceImpl implements CarService {
     public boolean ifExistsByObjectId(String objectId) {
         return carRepository.findByObjectId(objectId).isPresent();
     }
-
-    @Override
-    public Car findByObjectId(String objectId) {
-        return carRepository.findByObjectId(objectId).get();
-    }
 }

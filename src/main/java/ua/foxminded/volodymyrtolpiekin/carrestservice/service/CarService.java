@@ -28,6 +28,4 @@ public interface CarService {
     List<CarDTO> getByManufacturerAndYear(String manufacturerName, String modelName, int year);
 
     boolean ifExistsByObjectId(String objectId);
-
-    Car findByObjectId(String objectId);
 }

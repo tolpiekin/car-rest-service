@@ -81,7 +81,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public boolean existByName(String category) {
+    public boolean ifExistByName(String category) {
         return categoryRepository.existsByName(category);
     }
 }

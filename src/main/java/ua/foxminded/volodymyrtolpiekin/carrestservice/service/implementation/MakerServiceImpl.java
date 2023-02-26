@@ -44,6 +44,20 @@ public class MakerServiceImpl implements MakerService {
     }
 
     @Override
+    public List<CarModel> findAll(String name) {
+        Maker maker = makerRepository.findByName(name).get();
+        return maker.getModels();
+    }
+
+    @Override
+    public List<CarModelDTO> getAll(String name) {
+        return findAll(name)
+                .stream()
+                .map(car -> mapper.map(car, CarModelDTO.class))
+                .toList();
+    }
+
+    @Override
     public List<Maker> findAll() {
         return makerRepository.findAll();
     }
@@ -77,6 +91,8 @@ public class MakerServiceImpl implements MakerService {
     public boolean ifExistsByName(String manufacturerName) {
         return makerRepository.existsByName(manufacturerName);
     }
+
+
 
     @Override
     public Maker findByName(String make) {

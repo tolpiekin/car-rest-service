@@ -29,5 +29,5 @@ public interface CategoryService {
 
     void deleteById(Long id);
 
-    boolean existByName(String category);
+    boolean ifExistByName(String category);
 }
