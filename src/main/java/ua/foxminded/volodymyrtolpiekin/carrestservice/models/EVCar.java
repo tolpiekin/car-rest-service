@@ -19,16 +19,16 @@ public class EVCar {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String objectId;
-    @OneToOne
-    @JoinColumn(name = "model_id")
+    @ManyToOne
+    @JoinColumn(name = "maker_id")
+    private Maker maker;
+    @ManyToOne
+    @JoinColumn(name = "car_model_id")
     private CarModel model;
     private int year;
     @OneToOne
     @JoinColumn(name = "body_id")
     private Body body;
-    @OneToOne
-    @JoinColumn(name = "maker_id")
-    private Maker maker;
     @OneToOne
     @JoinColumn(name = "engine_id")
     private ElectricMotor engine;

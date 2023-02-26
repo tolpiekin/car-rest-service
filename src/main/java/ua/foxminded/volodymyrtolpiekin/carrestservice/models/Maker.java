@@ -1,5 +1,6 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -19,9 +20,9 @@ public class Maker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-
-    @OneToMany(mappedBy = "maker")
-    private List<CarModel> carModelList;
+    @OneToMany(mappedBy = "maker", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<CarModel> models;
 
     @Override
     public boolean equals(Object o) {

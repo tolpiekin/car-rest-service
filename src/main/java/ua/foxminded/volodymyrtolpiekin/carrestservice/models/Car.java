@@ -18,28 +18,22 @@ public class Car extends CarModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String objectId;
-
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "maker_id")
+    private Maker maker;
+    @ManyToOne
+    @JoinColumn(name = "car_model_id")
     private CarModel model;
     private int year;
-
     @OneToOne
     private Body body;
-
-    @OneToOne
-    private Maker maker;
-
     @OneToOne
     private CombustionEngine engine;
-
     @OneToOne
     private FuelTank tank;
-
     @OneToOne
     private Transmission transmission;
-
     @OneToMany
     @JoinColumn(name = "car_id")
     private List<Category> category;

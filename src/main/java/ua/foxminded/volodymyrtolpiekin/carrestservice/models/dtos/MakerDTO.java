@@ -13,7 +13,7 @@ import java.util.List;
 public class MakerDTO {
     private Long id;
     private String name;
-    private List<CarModel> carModelList;
+    private List<CarModel> models;
 
     @Override
     public boolean equals(Object o) {

@@ -17,10 +17,6 @@ public interface MakerService {
 
     MakerDTO getById(Long id);
 
-    List<CarModel> findAll(String name);
-
-    List<CarModelDTO> getAll(String name);
-
     List<Maker> findAll();
 
     List<MakerDTO> getAll();
@@ -32,8 +28,6 @@ public interface MakerService {
     void deleteById(Long id);
 
     boolean ifExistsByName(String manufacturerName);
-
-    List<CarModelDTO> getByName(String manufacturerName);
 
     Maker findByName(String make);
 }

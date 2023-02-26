@@ -1,5 +1,7 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -21,6 +23,7 @@ public class CarModel {
     private String name;
     @ManyToOne
     @JoinColumn(name = "maker_id")
+    @JsonBackReference
     private Maker maker;
 
     @Override
@@ -39,6 +42,8 @@ public class CarModel {
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        int result = 17;
+        result = 37 * result + (id == null ? 0 : id.hashCode());
+        return result;
     }
 }

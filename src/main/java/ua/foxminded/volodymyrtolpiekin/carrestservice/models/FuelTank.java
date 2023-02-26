@@ -21,7 +21,6 @@ public class FuelTank {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int volume;
-
     @Override
     public boolean equals(Object o) {
         boolean result;
