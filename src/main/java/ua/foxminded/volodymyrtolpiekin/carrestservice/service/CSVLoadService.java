@@ -98,6 +98,7 @@ public class CSVLoadService {
     }
 
     private CarModel createModelIfNotExists(String name, Maker maker) {
+        name = name.toLowerCase();
         if (carModelService.ifExistsByName(name)) {
             return carModelService.findByName(name);
         } else {
@@ -109,6 +110,7 @@ public class CSVLoadService {
     }
 
     private Maker createMakerIfNotExist(String make) {
+        make = make.toLowerCase();
         if (makerService.ifExistsByName(make)) {
             return makerService.findByName(make);
         }else {
