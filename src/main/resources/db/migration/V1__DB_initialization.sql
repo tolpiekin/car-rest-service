@@ -57,9 +57,19 @@ CREATE TABLE transmission (
 
 CREATE TABLE car_model (
   id BIGINT NOT NULL,
+  object_id VARCHAR(255),
   name VARCHAR(255),
+  maker_id BIGINT,
+  "year" INT NOT NULL,
+  body_id BIGINT,
+  combustion_engine_id BIGINT,
+  fuel_tank_id BIGINT,
+  transmission_id BIGINT,
+  engine_id BIGINT,
+  battery_id BIGINT,
+  reducer_id BIGINT,
+  charger_id BIGINT,
   CONSTRAINT pk_car_model PRIMARY KEY (id)
-);
 
 CREATE TABLE car_model_category (
   car_model_id BIGINT NOT NULL,
@@ -89,29 +99,3 @@ CREATE TABLE null_category (
    category_id BIGINT NOT NULL
 );
 
-CREATE TABLE ev_car (
-  id BIGINT NOT NULL,
-   model_id BIGINT,
-   object_id VARCHAR(255),
-   "year" INT NOT NULL,
-   body_id BIGINT,
-   maker_id BIGINT,
-   engine_id BIGINT,
-   battery_id BIGINT,
-   reducer_id BIGINT,
-   charger_id BIGINT,
-   CONSTRAINT pk_ev_car PRIMARY KEY (id)
-);
-
-CREATE TABLE car (
-  id BIGINT NOT NULL,
-   model_id BIGINT,
-   object_id VARCHAR(255),
-   "year" INT NOT NULL,
-   body_id BIGINT,
-   maker_id BIGINT,
-   combustion_engine_id BIGINT,
-   fuel_tank_id BIGINT,
-   transmission_id BIGINT,
-   CONSTRAINT pk_car PRIMARY KEY (id)
-);
