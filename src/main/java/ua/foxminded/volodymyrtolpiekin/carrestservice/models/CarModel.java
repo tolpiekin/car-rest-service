@@ -1,7 +1,6 @@
 package ua.foxminded.volodymyrtolpiekin.carrestservice.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -9,6 +8,7 @@ import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -16,15 +16,21 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CarModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String objectId;
     private String name;
     @ManyToOne
     @JoinColumn(name = "maker_id")
     @JsonBackReference
     private Maker maker;
+    private int year;
+    @OneToMany
+    @JoinColumn(name = "car_id")
+    private List<Category> category;
 
     @Override
     public boolean equals(Object o) {

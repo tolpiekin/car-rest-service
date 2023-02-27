@@ -5,64 +5,24 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @Entity
-public class EVCar {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String objectId;
-    @ManyToOne
-    @JoinColumn(name = "maker_id")
-    private Maker maker;
-    @ManyToOne
-    @JoinColumn(name = "car_model_id")
-    private CarModel model;
-    private int year;
+public class EVCar extends CarModel {
     @OneToOne
-    @JoinColumn(name = "body_id")
     private Body body;
-    @OneToOne
-    @JoinColumn(name = "engine_id")
+    @ManyToOne
     private ElectricMotor engine;
-    @OneToOne
-    @JoinColumn(name = "battery_id")
+    @ManyToOne
     private TractionBattery battery;
-    @OneToOne
-    @JoinColumn(name = "reducer_id")
+    @ManyToOne
     private Reducer reducer;
-    @OneToOne
-    @JoinColumn(name = "charger_id")
+    @ManyToOne
     private OnBoardCharger charger;
-    @OneToMany
-    @JoinColumn(name = "ev_car_id")
-    private List<Category> category;
-
-    @Override
-    public boolean equals(Object o) {
-        boolean result;
-        if (this == o) {
-            result = true;
-        } else if (o == null || getClass() != o.getClass()) {
-            result = false;
-        } else {
-            EVCar evCar = (EVCar) o;
-            result = id.equals(evCar.id);
-        }
-        return result;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 17;
-        result = 37 * result + (id == null ? 0 : id.hashCode());
-        return result;
-    }
 }
