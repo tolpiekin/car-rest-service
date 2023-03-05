@@ -11,6 +11,8 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.CarModelReposit
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.CarModelService;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -79,5 +81,15 @@ public class CarModelServiceImpl implements CarModelService {
     @Override
     public CarModel findByName(String model) {
         return carModelRepository.findByName(model);
+    }
+
+    @Override
+    public Set<Integer> getAllYears() {
+        return carModelRepository.findAll().stream().map(m -> m.getYear()).collect(Collectors.toSet());
+    }
+
+    @Override
+    public List<CarModelDTO> getByYear(int year) {
+        return carModelRepository.findByYear(year);
     }
 }

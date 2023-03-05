@@ -12,14 +12,15 @@ import java.util.List;
 public class CarDTO {
     private Long id;
     private String objectId;
+    private MakerDTO maker;
     private CarModelDTO model;
     private int year;
+    private List<CategoryDTO> category;
     private BodyDTO body;
-    private MakerDTO maker;
     private CombustionEngineDTO engine;
     private FuelTankDTO tank;
     private TransmissionDTO transmission;
-    private List<CategoryDTO> category;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

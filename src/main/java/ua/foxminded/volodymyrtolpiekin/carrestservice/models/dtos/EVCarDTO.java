@@ -12,15 +12,15 @@ import java.util.List;
 public class EVCarDTO {
     private Long id;
     private String objectId;
-    private CarModelDTO model;
-    private int year;
-    private BodyDTO body;
     private MakerDTO maker;
+    private String name;
+    private int year;
+    private List<CategoryDTO> category;
+    private BodyDTO body;
     private ElectricMotorDTO engine;
     private TractionBatteryDTO battery;
     private ReducerDTO reducer;
     private OnBoardChargerDTO charger;
-    private List<CategoryDTO> category;
 
     @Override
     public boolean equals(Object o) {

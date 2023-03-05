@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path= "/api/v1/manufacturer")
+@RequestMapping(path= "/api/v1/manufacturers")
 public class MakerController {
     private final MakerService makerService;
 

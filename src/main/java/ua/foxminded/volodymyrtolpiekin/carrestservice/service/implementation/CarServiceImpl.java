@@ -76,7 +76,7 @@ public class CarServiceImpl implements CarService {
         return findAll().stream()
                 .filter(car ->
                         car.getMaker().getName().equals(manufacturerName) &&
-                        car.getModel().getName().equals(modelName) &&
+                        car.getName().equals(modelName) &&
                         car.getYear() == year)
                 .map(car -> mapper.map(car, CarDTO.class)).toList();
     }

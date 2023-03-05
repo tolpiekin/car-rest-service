@@ -10,12 +10,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path= "/api/v1/manufacturer/models")
-public class CarModelController {
+@RequestMapping(path="/api/v1/manufacturers/model")
+public class ModelController {
     private final CarModelService carModelService;
 
     @GetMapping
-    public List<CarModelDTO> getAllCarModels() {
+    public List<CarModelDTO> getAllModels() {
         return  carModelService.getAll();
     }
 

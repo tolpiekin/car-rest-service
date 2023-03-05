@@ -94,7 +94,6 @@ public class CSVLoadService {
     }
 
     private Maker createMakerIfNotExist(String make) {
-        make = make.toLowerCase();
         if (makerService.ifExistsByName(make)) {
             return makerService.findByName(make);
         }else {

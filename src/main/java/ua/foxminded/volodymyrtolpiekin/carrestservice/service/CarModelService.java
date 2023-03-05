@@ -4,6 +4,7 @@ import ua.foxminded.volodymyrtolpiekin.carrestservice.models.CarModel;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos.CarModelDTO;
 
 import java.util.List;
+import java.util.Set;
 
 public interface CarModelService {
 
@@ -28,4 +29,8 @@ public interface CarModelService {
     boolean ifExistsByName(String model);
 
     CarModel findByName(String model);
+
+    Set<Integer> getAllYears();
+
+    List<CarModelDTO> getByYear(int year);
 }
