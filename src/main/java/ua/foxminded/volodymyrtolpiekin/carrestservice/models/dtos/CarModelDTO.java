@@ -13,7 +13,7 @@ public class CarModelDTO {
     private Long id;
     private String objectId;
     private MakerDTO maker;
-    private CarModelDTO model;
+    private String name;
     private int year;
     private List<CategoryDTO> category;
 

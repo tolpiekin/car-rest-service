@@ -101,4 +101,12 @@ public class MakerServiceImpl implements MakerService {
         else
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Car Maker not found");
     }
+
+    @Override
+    public MakerDTO getByName(String make) {
+        if(ifExistsByName(make))
+            return mapper.map(findByName(make), MakerDTO.class);
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Car Maker not found");
+    }
 }

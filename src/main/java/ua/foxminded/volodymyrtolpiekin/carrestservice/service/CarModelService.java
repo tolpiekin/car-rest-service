@@ -28,9 +28,17 @@ public interface CarModelService {
 
     boolean ifExistsByName(String model);
 
-    CarModel findByName(String model);
-
     Set<Integer> getAllYears();
 
-    List<CarModelDTO> getByYear(int year);
+    List<CarModelDTO> getByName(String modelName);
+
+    List<CarModelDTO> getMakerModels(String makerName);
+
+    CarModelDTO create(String makerName, String modelName, int year);
+
+    void deleteByNameAndYear(String makerName, String modelName, int year);
+
+    List<CarModelDTO> getByNameAndYear(String makerName, String modelName, int year);
+
+    CarModelDTO updateByNameAndYear(String makerName, String modelName, int year);
 }

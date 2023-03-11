@@ -9,7 +9,5 @@ import java.util.List;
 public interface CarModelRepository extends JpaRepository<CarModel, Long> {
     boolean existsByName(String modelName);
 
-    CarModel findByName(String model);
-
-    List<CarModelDTO> findByYear(int year);
+    List<CarModelDTO> findByName(String model);
 }

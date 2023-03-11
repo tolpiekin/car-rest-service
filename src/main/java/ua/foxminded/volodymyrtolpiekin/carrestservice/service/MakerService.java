@@ -34,4 +34,6 @@ public interface MakerService {
     boolean ifExistsByName(String manufacturerName);
 
     Maker findByName(String make);
+
+    MakerDTO getByName(String make);
 }

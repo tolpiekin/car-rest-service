@@ -6,9 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.CarModel;
+import ua.foxminded.volodymyrtolpiekin.carrestservice.models.Maker;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.models.dtos.CarModelDTO;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.repository.CarModelRepository;
 import ua.foxminded.volodymyrtolpiekin.carrestservice.service.CarModelService;
+import ua.foxminded.volodymyrtolpiekin.carrestservice.service.MakerService;
 
 import java.util.List;
 import java.util.Set;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 public class CarModelServiceImpl implements CarModelService {
 
     private final CarModelRepository carModelRepository;
+    private final MakerService makerService;
     private final ModelMapper mapper;
 
     @Override
@@ -79,17 +82,49 @@ public class CarModelServiceImpl implements CarModelService {
     }
 
     @Override
-    public CarModel findByName(String model) {
-        return carModelRepository.findByName(model);
-    }
-
-    @Override
     public Set<Integer> getAllYears() {
-        return carModelRepository.findAll().stream().map(m -> m.getYear()).collect(Collectors.toSet());
+        return carModelRepository.findAll().stream().map(CarModel::getYear).collect(Collectors.toSet());
     }
 
     @Override
-    public List<CarModelDTO> getByYear(int year) {
-        return carModelRepository.findByYear(year);
+    public List<CarModelDTO> getByName(String modelName) {
+        return carModelRepository.findByName(modelName);
+    }
+
+    @Override
+    public List<CarModelDTO> getMakerModels(String makerName) {
+        return getAll().stream().filter(m -> m.getMaker().getName().equals(makerName)).toList();
+    }
+
+    @Override
+    public CarModelDTO create(String makerName, String modelName, int year) {
+        Maker maker = makerService.findByName(makerName);
+        CarModel carModel = new CarModel();
+        carModel.setMaker(maker);
+        carModel.setName(modelName);
+        carModel.setYear(year);
+        return mapper.map(carModelRepository.save(carModel), CarModelDTO.class);
+    }
+
+    @Override
+    public void deleteByNameAndYear(String makerName, String modelName, int year) {
+        List<Long> idsToDelete = getByNameAndYear(makerName, modelName, year).stream().map(CarModelDTO::getId).toList();
+        idsToDelete.forEach(this::deleteById);
+    }
+
+    @Override
+    public List<CarModelDTO> getByNameAndYear(String makerName, String modelName, int year) {
+        return getMakerModels(makerName).stream().filter(model -> model.getName().equals(modelName) &&
+                model.getYear() == year).toList();
+    }
+
+    @Override
+    public CarModelDTO updateByNameAndYear(String makerName, String modelName, int year) {
+        Maker maker = makerService.findByName(makerName);
+        CarModel carModel = new CarModel();
+        carModel.setMaker(maker);
+        carModel.setName(modelName);
+        carModel.setYear(year);
+        return mapper.map(carModelRepository.save(carModel), CarModelDTO.class);
     }
 }
